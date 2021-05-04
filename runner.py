@@ -46,7 +46,8 @@ async def on_message(message):
                 resp = json.loads(resp)
                 for i in resp['sessions']:
                     print(i)
-                    if i['min_age_limit'] >= 18 and i['available_capacity'] >= 0:
+                    if i['min_age_limit'] == 18 and i['available_capacity'] >= 0:
+                        print(i)
                         await message.reply(str(i))
                     else:
                         continue
