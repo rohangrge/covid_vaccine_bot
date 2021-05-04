@@ -35,15 +35,22 @@ async def on_message(message):
     if(imsg.startswith(".vac")):
         async with message.channel.typing():
             p = imsg.split()
-            district = p[1]
+            district = imsg.split(".vac ", 1)[1]
             id = r.get(district.lower()+'_cid').decode('utf-8')
             print(id)
             x = datetime.datetime.now()
             date = (x.strftime("%d-%m-%y"))
             try:
                 req = requests.get(url1+'?district_id='+id+'&date='+date)
-                resp = req.json()
-                await message.reply(str(resp))
+                resp = req.content
+                resp = json.loads(resp)
+                for i in resp['sessions']:
+                    print(i)
+                    if i['min_age_limit'] >= 18 and i['available_capacity'] >= 0:
+                        await message.reply(str(i))
+                    else:
+                        continue
+
             except:
                 await message.reply('sorry')
 

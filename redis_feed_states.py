@@ -4,7 +4,7 @@ import redis
 
 url = 'https://cdn-api.co-vin.in/api/v2/admin/location/states'
 
-re = redis.Redis('192.168.0.133')
+re = redis.Redis()
 r = requests.get(url)
 data = json.loads(r.content)
 # print(data['states'])
