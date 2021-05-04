@@ -47,6 +47,7 @@ async def on_message(message):
                 flag = 0
                 for i in resp['sessions']:
                     # print(i)
+                    print(flag)
                     if i['min_age_limit'] == 18 and i['available_capacity'] >= 0:
                         print(i)
                         await message.reply(str(i))
