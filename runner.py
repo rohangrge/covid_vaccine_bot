@@ -44,14 +44,17 @@ async def on_message(message):
                 req = requests.get(url1+'?district_id='+id+'&date='+date)
                 resp = req.content
                 resp = json.loads(resp)
+                flag = 0
                 for i in resp['sessions']:
                     # print(i)
                     if i['min_age_limit'] == 18 and i['available_capacity'] >= 0:
                         print(i)
                         await message.reply(str(i))
+                        flag = 1
                     else:
                         continue
-
+                if flag == 1:
+                    await message.reply('no slots available')
             except:
                 await message.reply('sorry')
 
