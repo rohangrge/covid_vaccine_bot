@@ -15,7 +15,7 @@ import datetime
 
 
 url1 = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict'
-r = redis.Redis('192.168.0.133')
+r = redis.Redis()
 client = discord.Client()
 
 
